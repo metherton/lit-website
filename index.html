@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <title>Title</title>
 
+  <style>
+    .highlight {
+      color: 'blue';
+    }
+  </style>
+
 </head>
 <body>
 
@@ -11,12 +17,18 @@
 
 <script type="module">
     import {html, render} from './node_modules/lit-html/lit-html.js';
+    import {classMap} from './node_modules/lit-html/directives/class-map.js';
+    import {styleMap} from './node_modules/lit-html/directives/style-map.js';
 
     // Define a template
-    const myTemplate = (data) => html`<p>Hello ${data.first}</p><p>${data.second}</p>`;
-
+    const myTemplate = (data) => {
+      let styles = {
+        color: data.pColor
+      };
+      return html`<p style=${styleMap(styles)}>Hello ${data.first}</p><p>${data.second}</p>`;
+    }
     // Render the template to the document
-    render(myTemplate({first: 'Marty', second: 'very cool'}), document.body);
+    render(myTemplate({first: 'Marty', second: 'very cool', pColor: 'blue'}), document.body);
 
 </script>
 
