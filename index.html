@@ -6,7 +6,7 @@
 
   <style>
     .highlight {
-      color: 'blue';
+      color: red;
     }
   </style>
 
@@ -22,13 +22,14 @@
 
     // Define a template
     const myTemplate = (data) => {
+      let classes = { highlight: data.highlight };
       let styles = {
         color: data.pColor
       };
-      return html`<p style=${styleMap(styles)}>Hello ${data.first}</p><p>${data.second}</p>`;
+      return html`<p style=${styleMap(styles)}>Hello ${data.first}</p><p class=${classMap(classes)}>${data.second}</p>`;
     }
     // Render the template to the document
-    render(myTemplate({first: 'Marty', second: 'very cool', pColor: 'blue'}), document.body);
+    render(myTemplate({first: 'Marty', second: 'very cool', pColor: 'blue', highlight: true}), document.body);
 
 </script>
 
