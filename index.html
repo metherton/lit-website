@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+</head>
+<body>
+
+
+
+<script type="module">
+    import {html, render} from './node_modules/lit-html/lit-html.js';
+
+    // Define a template
+    const myTemplate = (data) => html`<p>Hello ${data.first}</p><p>${data.second}</p>`;
+
+    // Render the template to the document
+    render(myTemplate({first: 'Marty', second: 'very cool'}), document.body);
+
+</script>
+
+</body>
+</html>
