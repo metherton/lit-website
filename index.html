@@ -30,17 +30,38 @@
       capture: true,
     };
 
+    const myHeader = html`<h1>Header</h1>`;
+
+    const user = {isloggedIn: true, name: 'martinif'};
+
+    const getUserMessage = () => {
+      if (user.isloggedIn) {
+        return html`Welcome ${user.name}`;
+      } else {
+        return html`Please log in`;
+      }
+    }
+
+
+
+    const myListView = (items) => html`<ul>${items.map((item) => html`<li>${item}</li>`)}</ul>`;
+
     // Define a template
     const myTemplate = (data) => {
       let classes = { highlight: data.highlight };
       let styles = {
         color: data.pColor
       };
-      return html`<p style=${styleMap(styles)}>Hello ${data.first}</p><p class=${classMap(classes)}>${data.second}</p>
-      <div ?disabled=${!data.active}>stylish text</div><input .value=${data.value}></input><button @click=${clickHandler}>Click Me!</button>`;
+      return html`${getUserMessage()}${myHeader}<p style=${styleMap(styles)}>Hello ${data.first}</p><p class=${classMap(classes)}>${data.second}</p>
+      <div ?disabled=${!data.active}>stylish text</div><input .value=${data.value}></input><button @click=${clickHandler}>Click Me!</button>
+      ${myListView(data.items)}
+      ${data.isloggedIn
+      ? html`Welcome ${data.name}`
+      : html`Please log in`
+  }`;
     }
     // Render the template to the document
-    render(myTemplate({first: 'Marty', second: 'very cool', pColor: 'blue', highlight: true, active: false, value: '42'}), document.body);
+    render(myTemplate({name: 'Martyloggedin', first: 'Marty', second: 'very cool', pColor: 'blue', highlight: true, active: false, value: '42', isloggedIn: true, items: ['john', 'bob', 'alice']}), document.body);
 
 </script>
 
