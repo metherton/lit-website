@@ -17,13 +17,28 @@
 
 <script type="module">
     import {html, render} from './node_modules/lit-html/lit-html.js';
+    import {repeat} from './node_modules/lit-html/directives/repeat.js';
     import {classMap} from './node_modules/lit-html/directives/class-map.js';
     import {styleMap} from './node_modules/lit-html/directives/style-map.js';
+
+    const emps = [{id: 1, familyName: 'Etherton', givenName: 'martin'}, {id: 2, familyName: 'smith', givenName: 'fred'}]
+
+    const employeeList = (employees) => html`
+      <ul>
+        ${repeat(employees, (employee) => employee.id, (employee, index) => html`
+          <li>${index}: ${employee.familyName}, ${employee.givenName}</li>
+        `)}
+      </ul>
+    `;
+
 
     const clickHandler = {
       // handleEvent method is required.
       handleEvent(e) {
         console.log('clicked!');
+        emps[0].familyName = 'bla';
+    render(myTemplate({name: 'Martyloggedin', first: 'Marty', second: 'very cool', pColor: 'blue', highlight: true, active: false, value: '42', isloggedIn: true, items: ['john', 'bob', 'alice']}), document.body);
+
       },
       // event listener objects can also define zero or more of the event
       // listener options: capture, passive, and once.
@@ -67,7 +82,8 @@
   }
     <ul>
     ${itemTemplates}
-  </ul>`;
+  </ul>
+  ${employeeList(emps)}`;
     }
     // Render the template to the document
     render(myTemplate({name: 'Martyloggedin', first: 'Marty', second: 'very cool', pColor: 'blue', highlight: true, active: false, value: '42', isloggedIn: true, items: ['john', 'bob', 'alice']}), document.body);
