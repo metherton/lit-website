@@ -20,6 +20,16 @@
     import {classMap} from './node_modules/lit-html/directives/class-map.js';
     import {styleMap} from './node_modules/lit-html/directives/style-map.js';
 
+    const clickHandler = {
+      // handleEvent method is required.
+      handleEvent(e) {
+        console.log('clicked!');
+      },
+      // event listener objects can also define zero or more of the event
+      // listener options: capture, passive, and once.
+      capture: true,
+    };
+
     // Define a template
     const myTemplate = (data) => {
       let classes = { highlight: data.highlight };
@@ -27,7 +37,7 @@
         color: data.pColor
       };
       return html`<p style=${styleMap(styles)}>Hello ${data.first}</p><p class=${classMap(classes)}>${data.second}</p>
-      <div ?disabled=${!data.active}>stylish text</div><input .value=${data.value}></input>`;
+      <div ?disabled=${!data.active}>stylish text</div><input .value=${data.value}></input><button @click=${clickHandler}>Click Me!</button>`;
     }
     // Render the template to the document
     render(myTemplate({first: 'Marty', second: 'very cool', pColor: 'blue', highlight: true, active: false, value: '42'}), document.body);
