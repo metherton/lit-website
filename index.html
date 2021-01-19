@@ -26,7 +26,8 @@
       let styles = {
         color: data.pColor
       };
-      return html`<p style=${styleMap(styles)}>Hello ${data.first}</p><p class=${classMap(classes)}>${data.second}</p>`;
+      return html`<p style=${styleMap(styles)}>Hello ${data.first}</p><p class=${classMap(classes)}>${data.second}</p>
+      <div ?disabled=${!data.active}>stylish text</div>`;
     }
     // Render the template to the document
     render(myTemplate({first: 'Marty', second: 'very cool', pColor: 'blue', highlight: true}), document.body);
