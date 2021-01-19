@@ -42,6 +42,12 @@
       }
     }
 
+    const items = ['fred', 'sally'];
+
+    const itemTemplates = [];
+    for (const i of items) {
+      itemTemplates.push(html`<li>${i}</li>`);
+    }
 
 
     const myListView = (items) => html`<ul>${items.map((item) => html`<li>${item}</li>`)}</ul>`;
@@ -58,7 +64,10 @@
       ${data.isloggedIn
       ? html`Welcome ${data.name}`
       : html`Please log in`
-  }`;
+  }
+    <ul>
+    ${itemTemplates}
+  </ul>`;
     }
     // Render the template to the document
     render(myTemplate({name: 'Martyloggedin', first: 'Marty', second: 'very cool', pColor: 'blue', highlight: true, active: false, value: '42', isloggedIn: true, items: ['john', 'bob', 'alice']}), document.body);
