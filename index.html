@@ -27,10 +27,10 @@
         color: data.pColor
       };
       return html`<p style=${styleMap(styles)}>Hello ${data.first}</p><p class=${classMap(classes)}>${data.second}</p>
-      <div ?disabled=${!data.active}>stylish text</div>`;
+      <div ?disabled=${!data.active}>stylish text</div><input .value=${data.value}></input>`;
     }
     // Render the template to the document
-    render(myTemplate({first: 'Marty', second: 'very cool', pColor: 'blue', highlight: true}), document.body);
+    render(myTemplate({first: 'Marty', second: 'very cool', pColor: 'blue', highlight: true, active: false, value: '42'}), document.body);
 
 </script>
 
