@@ -21,6 +21,8 @@
     import {classMap} from './node_modules/lit-html/directives/class-map.js';
     import {styleMap} from './node_modules/lit-html/directives/style-map.js';
 
+    import {color} from './modules/color.js';
+
     const emps = [{id: 1, familyName: 'Etherton', givenName: 'martin'}, {id: 2, familyName: 'smith', givenName: 'fred'}]
 
     const employeeList = (employees) => html`
@@ -76,7 +78,7 @@
       let styles = {
         color: data.pColor
       };
-      return html`<div>${helloDirective()}</div>${getUserMessage()}${myHeader}<p style=${styleMap(styles)}>Hello ${data.first}</p><p class='${classMap(classes)}'>${data.second}</p>
+      return html`<div>the module has color: ${color()}</div><div>${helloDirective()}</div>${getUserMessage()}${myHeader}<p style=${styleMap(styles)}>Hello ${data.first}</p><p class='${classMap(classes)}'>${data.second}</p>
       <div ?disabled=${!data.active}>stylish text</div><input .value=${data.value}></input><button @click=${clickHandler}>Click Me!</button>
       ${myListView(data.items)}
       ${data.isloggedIn
